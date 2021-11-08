@@ -51,10 +51,6 @@ int main() {
         }
 
         sort(tasks.begin(), tasks.end(), stCmp);
-        // for (int j=0; j<=idx; j++) {
-        //     tasks[j].len = tasks[j].len_copy;
-        //     // cout << tasks[j].st << ", " << tasks[j].ed << ", " << tasks[j].len << ", " << tasks[j].p << "\n";
-        // }
 
         int timer=1, workload=0;
         priority_queue<task> q;

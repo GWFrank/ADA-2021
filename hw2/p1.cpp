@@ -36,15 +36,8 @@ int main() {
     cin.tie(nullptr);
     int T, n, m, step;
     cin >> T;
-    // T=1;
     for (int t=0; t<T; ++t) {
-        // cout << "howdy0" << endl;
         cin >> n >> m >> step;
-        // memset(DP, 0, sizeof(DP));
-        // memset(reward, 0, sizeof(reward));
-        // memset(parent, 0, sizeof(parent));
-        // cout << "howdy1" << endl;
-        // cout << n << " " << m << " " << step << endl;
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
                 string s;
@@ -52,16 +45,12 @@ int main() {
                 reward[i][j] = toNum(s);
             }
         }
-        // cout << "howdy2" << endl;
         for (int i=0; i<n; ++i) {
             for (int j=0; j<m; ++j) {
                 DP[i][j][0] = INT64_MIN;
                 for (int k=step; k>0; --k) {
                     DP[i][j][k] = INT64_MIN;
-                    // cout << i << "," << j << "," << k << endl;
                     if (i-1 >= 0) {
-                        // cout << "compare to above" << endl;
-                        // cout << DP[i-1][j][k-1] << endl;
                         if (DP[i-1][j][k-1] > DP[i][j][k]) {
                             DP[i][j][k] = DP[i-1][j][k-1];
                             if (k-1 != 0) {
@@ -102,20 +91,10 @@ int main() {
                     } else {
                         DP[i][j][0] = INT64_MIN;
                     }
-                    
                 }
             }
         }
-        // for (int k=0; k<=step; k++) {
-        //     cout << "k=" << k << endl;
-        //     for (int i=0; i<n; i++) {
-        //         for (int j=0; j<m; j++) {
-        //             cout << DP[i][j][k] << " ";
-        //         }
-        //         cout << endl;
-        //     }
-        // }
-        // cout << "reward=" << DP[n][m][0] << endl;
+
         if (DP[n-1][m-1][0] == INT64_MIN) {
             cout << "Impassable\n";
         } else {

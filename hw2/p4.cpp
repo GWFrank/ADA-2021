@@ -127,30 +127,16 @@ lli removeMin(
         , priority_queue<node*, vector<node*>, decltype(myCmp)> &dl_heap) {
     node* min_p = heap.top();
     lli ret = min_p->key;
-    // cout << "got here\n";
-    // cout << "min=" << ret << "\n";
-    // printList(min_p);
-    // printListBack(min_p);
     node* new_node = removeLList(p_sum, min_p);
     heap.pop();
-    // dl_heap.push(min_p);
-    // cout << "push " << min_p->key << " @ " << min_p << "\n";
     dl_heap.push(min_p->nxt);
-    // cout << "push " << min_p->nxt->key << " @ " << min_p->nxt << "\n";
-    // cout << "dl_heap size: " << dl_heap.size() << "\n";
     dl_heap.push(min_p->prv);
-    // cout << "push " << min_p->prv->key << " @ " << min_p->prv << "\n";
-    // cout << "dl_heap size: " << dl_heap.size() << "\n";
     min_p->deleted = 1;
     min_p->nxt->deleted = 1;
     min_p->prv->deleted = 1;
     
-    // printList(new_node);
     deleteHeap(heap, dl_heap);
-    // printList(new_node);
-    // printListBack(new_node);
     heap.push(new_node);
-    // cout << "here\n";
     free(min_p);
     return ret;
 }

@@ -78,24 +78,6 @@ int main() {
             dp[i][j] = 0; dp[j][i] = 0;
         }
     }
-    // for (int i=0; i<n; i++) {
-    //     for (int j=0; j<n; j++) {
-    //         cout << dp[i][j] << ", ";
-    //     }
-    //     cout << "\n";
-    // }
     cout << solve_dp(0, n-1) << endl;
-    // for (int i=0; i<n; i++) {
-    //     for (int j=0; j<n; j++) {
-    //         cout << dp[i][j] << ", ";
-    //     }
-    //     cout << "\n";
-    // }
-    // for (int i=0; i<n; i++) {
-    //     for (int j=0; j<n; j++) {
-    //         cout << gcd_table[i][j] << ", ";
-    //     }
-    //     cout << "\n";
-    // }
     return 0;
 }
