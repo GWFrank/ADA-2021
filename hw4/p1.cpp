@@ -99,6 +99,10 @@ void BKSearch(bitset<80> R, bitset<80> P, bitset<80> X, vector<bitset<80>> &adj_
     int pivot;
     for (pivot=0; pivot<adj_mat.size(); ++pivot)
         if (tmp[pivot]) break;
+    // vector<int> pivots(0);
+    // for (int i=0; i<adj_mat.size(); ++i)
+    //     if (tmp[i]) pivots.push_back(i);
+    // pivot = pivots[rand()%pivots.size()];
     tmp = P^(P&adj_mat[pivot]);
     for (int v=0; v<adj_mat.size(); ++v) {
         if (tmp[v]) {
