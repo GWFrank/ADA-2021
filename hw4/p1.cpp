@@ -55,15 +55,15 @@ namespace ypglpk
     }
     // maximize cx subject to Ax<=b and xi is an integer if isint[i]. return pair(cy,y) where y is the optimal x. if the constraints are infeasible or unbounded, return pair(-INF,{}).
     pair<double, vector<double>> bin_lp(
-          const vector<vector<double>> &A, const vector<double> &b, const vector<double> &c, const vector<bool> &isint
+          const vector<vector<double>> &A, const vector<double> &b, const vector<double> &c
         ) {
         int n = c.size();
         glp_term_out(output ? GLP_ON : GLP_OFF);
         glp_prob *milp = glp_create_prob();
         set_constraints(milp, A, b, c);
         for (int i = 0; i < n; i++) {
-            if (isint[i])
-                glp_set_col_kind(milp, i + 1, GLP_BV);
+            // if (isint[i])
+            glp_set_col_kind(milp, i + 1, GLP_BV);
         }
         glp_iocp parm;
         glp_init_iocp(&parm);
@@ -180,7 +180,7 @@ int main() {
         int cnst = V, strt = cliques.size();
         vector<vector<double>> A(cnst, vector<double>(strt, 0));
         vector<double> b(cnst), c(strt);
-        vector<bool> isint(strt);
+        // vector<bool> isint(strt);
 
         for (int i=0; i<V; ++i) {
             // -v_i = -(x_k1 + ... + x_kn) <= -1
@@ -202,13 +202,13 @@ int main() {
         // }
         // target: minimize sum(x)
         fill(c.begin(), c.end(), -1);
-        fill(isint.begin(), isint.end(), true);
+        // fill(isint.begin(), isint.end(), true);
         // cerr << "A = \n"; printMat(A);
         // cerr << "b = "; printVec(b);
         // cerr << "c = "; printVec(c);
 
         // Solve LP & output
-        pair<double, vector<double>> sol = ypglpk::bin_lp(A, b, c, isint);
+        pair<double, vector<double>> sol = ypglpk::bin_lp(A, b, c);
         bitset<80> chosen; chosen.reset();
         cout << -sol.first << "\n";
         for (int i=0; i<strt; i++) {
